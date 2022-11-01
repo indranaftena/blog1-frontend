@@ -1,6 +1,8 @@
-# frontend
+# frontendfor Blog Experiment 1
 
-This template should help get you started developing with Vue 3 in Vite.
+This is an experiment with Vue for blog frontend. It follows [tutorial from Eric's Dev Blog](https://www.ericsdevblog.com/posts/create-a-modern-application-with-django-and-vue-1/).
+
+For backend side, coming soon so stay tuned!
 
 ## Recommended IDE Setup
 
