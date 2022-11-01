@@ -22,7 +22,7 @@
             <div class="-mx-4 flex flex-wrap justify-center">
                 <div class="w-full px-4">
                     <div class="relative z-20 mb-4 h-[300px] overflow-hidden rounded md:h-[400px] lg:h-[500px]">
-                        <img :src="`http://127.0.0.1:8000/media/${postsBySlug.featuredImage}`" alt="postImage"
+                        <img :src="`https://indranaftena.pythonanywhere.com/media/${postsBySlug.featuredImage}`" alt="postImage"
                             class="h-full w-full object-cover object-center" />
                     </div>
                     <div class="-mx-4 flex flex-wrap justify-center">

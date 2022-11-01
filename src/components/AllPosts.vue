@@ -7,7 +7,7 @@
                         <div class="mb-8 overflow-hidden rounded">
                             <router-link :to="`/post/${post.slug}`" class="block">
                                 <img
-                                    :src="`http://127.0.0.1:8000/media/${post.featuredImage}`"
+                                    :src="`https://indranaftena.pythonanywhere.com/media/${post.featuredImage}`"
                                     alt="image"
                                     class="w-full transition group-hover:scale-125"
                                 />
