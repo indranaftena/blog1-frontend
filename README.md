@@ -1,4 +1,4 @@
-# frontendfor Blog Experiment 1
+# Frontend for Blog Experiment 1
 
 This is an experiment with Vue for blog frontend. It follows [tutorial from Eric's Dev Blog](https://www.ericsdevblog.com/posts/create-a-modern-application-with-django-and-vue-1/).
 
