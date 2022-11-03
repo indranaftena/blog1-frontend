@@ -8,7 +8,8 @@
         <div class="relative -mx-4 flex items-center justify-between">
           <div class="w-60 max-w-full px-4">
             <RouterLink to="/" class="navbar-logo block w-full py-5">
-              <img alt="logo" :src="logoSrc" class="header-logo w-20" />
+              <img v-if="isScrolled" alt="logo" src="@/assets/logo.svg" class="header-logo w-20" />
+              <img v-else alt="logo" src="@/assets/logo-white.svg" class="header-logo w-20" />
             </RouterLink>
           </div>
           <div class="flex w-full items-center justify-between px-4">
@@ -186,7 +187,7 @@ export default {
       isNavHidden: true,
       isScrolled: false,
       // window.location.origin return app address
-      logoSrc: window.location.origin + "/src/assets/logo-white.svg",
+      // logoSrc: window.location.origin + "/src/assets/logo-white.svg",
       navTogglerActive: false,
       user: {
         isAuthenticated: false,
@@ -224,11 +225,9 @@ export default {
       // transform navbar
       if (window.pageYOffset > ud_pos) {
         this.isScrolled = true
-        this.logoSrc = window.location.origin + "/src/assets/logo.svg"
       }
       else {
         this.isScrolled = false
-        this.logoSrc = window.location.origin + "/src/assets/logo-white.svg"
       }
     },
 
