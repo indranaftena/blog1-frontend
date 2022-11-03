@@ -4,7 +4,7 @@
         <div class="container">
             <div class="-mx-4 flex flex-wrap items-center">
                 <div class="w-full px-4">
-                    <div class="hero-content mx-auto max-w-[780px] text-center">
+                    <div v-if="postsBySlug" class="hero-content mx-auto max-w-[780px] text-center">
                         <h1
                             class="mb-16 text-3xl leading-snug text-white sm:text-4xl sm:leading-snug md:text-[45px] md:leading-snug">
                             {{ postsBySlug.title }}</h1>
@@ -20,9 +20,11 @@
     <section class="bg-[#f4f7ff] pt-10 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap justify-center">
-                <div class="w-full px-4">
+                <div v-if="postsBySlug" class="w-full px-4">
                     <div class="relative z-20 mb-4 h-[300px] overflow-hidden rounded md:h-[400px] lg:h-[500px]">
-                        <img :src="`https://indranaftena.pythonanywhere.com/media/${postsBySlug.featuredImage}`" alt="postImage"
+                        <!-- <img :src="`https://indranaftena.pythonanywhere.com/media/${postsBySlug.featuredImage}`" alt="postImage"
+                            class="h-full w-full object-cover object-center" /> -->
+                        <img :src="imgSrc+postsBySlug.featuredImage" alt="postImage"
                             class="h-full w-full object-cover object-center" />
                     </div>
                     <div class="-mx-4 flex flex-wrap justify-center">
@@ -81,46 +83,8 @@ export default {
         }
     },
 
-    // apollo: {
-    //     postsBySlug: {
-    //         query: gql`query ($slug: String!){
-    //             postsBySlug(slug: $slug) {
-    //                 id
-    //                 title
-    //                 content
-    //                 featuredImage
-    //                 commentSet {
-    //                     content
-    //                     user {
-    //                         username
-    //                     }
-    //                     isApproved
-    //                 }
-    //                 numberOfLikes
-    //                 likes {
-    //                     id
-    //                 }
-    //             }
-    //         }`,
-    //         variables () {
-    //             return {
-    //                 slug: this.$route.params.slug,
-    //             }
-    //         },
-    //     },
-    // },
-
-    computed: {
-        approvedComments() {
-            return this.postsBySlug.commentSet.filter((comment) => comment.isApproved)
-        }
-    },
-
-    async created() {
-        // console.log(this.user.info.id)
-        // console.log(this.$route.params.slug)
-
-        const post = await this.$apollo.query({
+    apollo: {
+        postsBySlug: {
             query: gql`query ($slug: String!){
                 postsBySlug(slug: $slug) {
                     id
@@ -141,20 +105,30 @@ export default {
                     }
                 }
             }`,
-            // variables () {
-            //     return {
-            //         slug: this.$route.params.slug,
-            //     }
-            // },
-            variables: {
-                slug: this.$route.params.slug, //"when-pain-makes-reasons-to-live",
-            }
-        })
-        this.postsBySlug = post.data.postsBySlug
+            variables () {
+                return {
+                    slug: this.$route.params.slug,
+                }
+            },
+        },
+    },
+
+    computed: {
+        approvedComments() {
+            return this.postsBySlug.commentSet.filter((comment) => comment.isApproved)
+        }
+    },
+
+    async created() {
+        // console.log(this.user.info.id)
+        // console.log(this.$route.params.slug)
 
         if (this.user.token) {
             this.user.isAuthenticated = true
         }
+
+        // Get number of likes
+        this.numberOfLikes = parseInt(this.postsBySlug.numberOfLikes)
 
         let likedUsers = this.postsBySlug.likes
 
@@ -163,9 +137,6 @@ export default {
                 this.liked = true
             }
         }
-
-        // Get number of likes
-        this.numberOfLikes = parseInt(this.postsBySlug.numberOfLikes)
     },
 
     methods: {

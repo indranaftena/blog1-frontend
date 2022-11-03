@@ -2,12 +2,18 @@
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap">
-                <div v-for="post in allPosts" :key="post.title" class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <span v-if="$apollo.queries.allPosts.loading" class="animate-ping h-1 w-1 rounded-full bg-primary"></span>
+                <div v-if="allPosts" v-for="post in allPosts" :key="post.title" class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="group mb-10">
                         <div class="mb-8 overflow-hidden rounded">
                             <router-link :to="`/post/${post.slug}`" class="block">
-                                <img
+                                <!-- <img
                                     :src="`https://indranaftena.pythonanywhere.com/media/${post.featuredImage}`"
+                                    alt="image"
+                                    class="w-full transition group-hover:scale-125"
+                                /> -->
+                                <img
+                                    :src="imgSrc+post.featuredImage"
                                     alt="image"
                                     class="w-full transition group-hover:scale-125"
                                 />

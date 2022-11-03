@@ -24,8 +24,13 @@
                     <div class="group mb-10">
                         <div class="mb-8 overflow-hidden rounded">
                             <router-link :to="`/post/${post.slug}`" class="block">
-                                <img
+                                <!-- <img
                                     :src="`https://indranaftena.pythonanywhere.com/media/${post.featuredImage}`"
+                                    alt="image"
+                                    class="w-full transition group-hover:scale-125"
+                                /> -->
+                                <img
+                                    :src="imgSrc+post.featuredImage"
                                     alt="image"
                                     class="w-full transition group-hover:scale-125"
                                 />

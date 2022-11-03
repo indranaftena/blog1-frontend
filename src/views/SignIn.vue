@@ -23,7 +23,7 @@
                         <div v-if="userToken" class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]">
                             <p class="text-2xl text-dark">
                                 Your're signed in!
-                                <a @click="$router.go(-1)">Go back</a>
+                                <a class="text-primary hover:underline" @click="$router.go(-1)">Go back</a>
                             </p>
                         </div>
                         <div v-else class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]">
