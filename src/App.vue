@@ -122,7 +122,7 @@
               <li>
                 <a href="https://graphql.org" rel="nofollow noopner" target="_blank"
                   class="mb-6 mr-5 block max-w-[120px] xl:max-w-[100px] 2xl:max-w-[120px]">
-                  <img src="@/assets/GraphQL Logo + Wordmark (White).svg" alt="graphql" class="w-full"/>
+                  <img src="@/assets/GraphQL-logo-white.svg" alt="graphql" class="w-full"/>
                 </a>
               </li>
               <li>
