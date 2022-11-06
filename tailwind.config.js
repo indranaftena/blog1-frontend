@@ -32,6 +32,9 @@ module.exports = {
         "switch-1": "0px 0px 5px rgba(0, 0, 0, 0.15)",
         testimonial: "0px 60px 120px -20px #EBEFFD",
       },
+      animation: {
+        "spin-slow": "spin 2s linear infinite",
+      },
     },
   },
   plugins: [],

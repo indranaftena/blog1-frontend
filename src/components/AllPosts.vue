@@ -2,7 +2,7 @@
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap">
-                <span v-if="$apollo.queries.allPosts.loading" class="animate-ping h-1 w-1 rounded-full bg-primary"></span>
+                <span v-if="$apollo.queries.allPosts.loading" class="animate-spin-slow mx-auto w-20 h-20 rounded-sm bg-primary/50"></span>
                 <div v-if="allPosts" v-for="post in allPosts" :key="post.title" class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="group mb-10">
                         <div class="mb-8 overflow-hidden rounded">

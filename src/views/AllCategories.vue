@@ -3,7 +3,10 @@
     <div class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]">
         <div class="container">
             <div class="-mx-4 flex flex-wrap items-center">
-                <div class="w-full px-4">
+                <div v-if="$apollo.queries.allCategories.loading" class="mx-auto my-10 w-10 h-10">
+                    <span class="animate-spin-slow absolute inline-flex w-10 h-10 rounded-sm bg-white/50"></span>
+                </div>
+                <div v-if="allCategories" class="w-full px-4">
                     <div class="hero-content mx-auto max-w-[780px] text-center">
                         <h1
                             class="mb-16 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug md:text-[45px] md:leading-snug">
@@ -20,7 +23,8 @@
     <section class="bg-[#f4f7ff] py-14 lg:py-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap px-4">
-                <div v-for="category in allCategories" class="relative mx-2 my-2 max-w-[200px] rounded shadow-lg bg-white py-2 px-4 group hover:z-50 transition ease-in-out hover:scale-125">
+                <span v-if="$apollo.queries.allCategories.loading" class="animate-spin-slow mx-auto w-20 h-20 rounded-sm bg-primary/50"></span>
+                <div v-if="allCategories" v-for="category in allCategories" class="relative mx-2 my-2 max-w-[200px] rounded shadow-lg bg-white py-2 px-4 group hover:z-50 transition ease-in-out hover:scale-125">
                     <router-link :to="`/category/${category.slug}`">
                         <div
                             class="text-dark text-xl group-hover:text-primary">

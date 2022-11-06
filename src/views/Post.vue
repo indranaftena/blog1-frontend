@@ -3,6 +3,9 @@
     <div class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]">
         <div class="container">
             <div class="-mx-4 flex flex-wrap items-center">
+                <div v-if="$apollo.queries.postsBySlug.loading" class="mx-auto my-10 w-10 h-10">
+                    <span class="animate-spin-slow absolute inline-flex w-10 h-10 rounded-sm bg-white/50"></span>
+                </div>
                 <div class="w-full px-4">
                     <div v-if="postsBySlug" class="hero-content mx-auto max-w-[780px] text-center">
                         <h1
@@ -20,11 +23,12 @@
     <section class="bg-[#f4f7ff] pt-10 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap justify-center">
+                <span v-if="$apollo.queries.postsBySlug.loading" class="animate-spin-slow mx-auto w-20 h-20 rounded-sm bg-primary/50"></span>
                 <div v-if="postsBySlug" class="w-full px-4">
                     <div class="relative z-20 mb-4 h-[300px] overflow-hidden rounded md:h-[400px] lg:h-[500px]">
                         <!-- <img :src="`https://indranaftena.pythonanywhere.com/media/${postsBySlug.featuredImage}`" alt="postImage"
                             class="h-full w-full object-cover object-center" /> -->
-                        <img :src="imgSrc+postsBySlug.featuredImage" alt="postImage"
+                        <img :src="imgSrc + postsBySlug.featuredImage" alt="postImage"
                             class="h-full w-full object-cover object-center" />
                     </div>
                     <div class="-mx-4 flex flex-wrap justify-center">
@@ -36,11 +40,13 @@
                         <div class="bg-white w-[80%] py-4 px-4 lg:w-8/12">
                             <div v-if="liked === true" class="pb-4">
                                 You're one of {{ numberOfLikes }} people who like this post.
-                                <a @click="updateLike()" v-if="user.isAuthenticated" class="text-primary hover:underline">Not like it?</a>
+                                <a @click="updateLike()" v-if="user.isAuthenticated"
+                                    class="text-primary hover:underline">Not like it?</a>
                             </div>
                             <div v-else class="pb-4">
                                 There are {{ numberOfLikes }} people like this post.
-                                <a @click="updateLike()" v-if="user.isAuthenticated" class="text-primary hover:underline">Like this post?</a>
+                                <a @click="updateLike()" v-if="user.isAuthenticated"
+                                    class="text-primary hover:underline">Like this post?</a>
                             </div>
                             <CommentSectionComponent v-if="approvedComments" :comments="approvedComments"
                                 :postID="postsBySlug.id" :userID="user.info.id" :isAuthenticated="user.isAuthenticated">
@@ -105,7 +111,7 @@ export default {
                     }
                 }
             }`,
-            variables () {
+            variables() {
                 return {
                     slug: this.$route.params.slug,
                 }

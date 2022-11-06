@@ -3,7 +3,10 @@
     <div class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]">
         <div class="container">
             <div class="-mx-4 flex flex-wrap items-center">
-                <div class="w-full px-4">
+                <div v-if="$apollo.queries.postsByCategory.loading" class="mx-auto my-10 w-10 h-10">
+                    <span class="animate-spin-slow absolute inline-flex w-10 h-10 rounded-sm bg-white/50"></span>
+                </div>
+                <div v-if="postsByCategory" class="w-full px-4">
                     <div class="hero-content mx-auto max-w-[780px] text-center">
                         <h1
                             class="mb-16 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug md:text-[45px] md:leading-snug">
@@ -20,7 +23,8 @@
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
         <div class="container">
             <div class="-mx-4 flex flex-wrap">
-                <div v-for="post in postsByCategory" :key="post.title" class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <span v-if="$apollo.queries.postsByCategory.loading" class="animate-spin-slow mx-auto w-20 h-20 rounded-sm bg-primary/50"></span>
+                <div v-if="postsByCategory" v-for="post in postsByCategory" :key="post.title" class="w-full px-4 md:w-1/2 lg:w-1/3">
                     <div class="group mb-10">
                         <div class="mb-8 overflow-hidden rounded">
                             <router-link :to="`/post/${post.slug}`" class="block">
